@@ -1,0 +1,334 @@
+{
+  "app": {
+    "tagline": "Just talk. Burbuja types."
+  },
+  "common": {
+    "cancel": "Cancel"
+  },
+  "titlebar": {
+    "minimize": "Minimize",
+    "maximize": "Maximize",
+    "close": "Close to tray"
+  },
+  "nav": {
+    "label": "Main",
+    "home": "Home",
+    "history": "History",
+    "dictionary": "Dictionary",
+    "settings": "Settings"
+  },
+  "home": {
+    "hero": {
+      "before": "Hold",
+      "after": "to dictate anywhere"
+    },
+    "try": "Try it here",
+    "hideTry": "Hide test field",
+    "tryLabel": "Test field",
+    "tryPlaceholder": "Click here, hold {{hotkey}} and talk…",
+    "statsLabel": "This week",
+    "words": "Words dictated",
+    "wpm": "Words per minute",
+    "saved": "Time saved",
+    "minutes": "{{n}} min",
+    "recent": "Recent",
+    "empty": "Nothing yet. Hold {{hotkey}} in any app and talk."
+  },
+  "history": {
+    "keep": "Keep",
+    "days": "{{n}} days",
+    "forever": "Forever",
+    "clear": "Clear history",
+    "confirmClear": "Delete every dictation? This can't be undone.",
+    "clearAll": "Delete all",
+    "search": "Search history",
+    "searchPlaceholder": "Search…",
+    "empty": "Your dictations will show up here",
+    "noMatches": "No matches",
+    "copy": "Copy",
+    "showRaw": "Show the original transcript",
+    "showFinal": "Show the final text",
+    "reclean": "Clean up again",
+    "delete": "Delete",
+    "more": "Load more"
+  },
+  "dictionary": {
+    "vocabulary": "Vocabulary",
+    "vocabularyHint": "Names and terms to spell exactly.",
+    "addTerm": "Add a term",
+    "addTermPlaceholder": "e.g. Kubernetes…",
+    "remove": "Remove {{term}}",
+    "replacements": "Replacements",
+    "replacementsHint": "Applied after cleanup, whole words, any case.",
+    "from": "Replace",
+    "fromPlaceholder": "post gres…",
+    "to": "With",
+    "toPlaceholder": "PostgreSQL…",
+    "add": "Add",
+    "removeReplacement": "Remove replacement for {{from}}"
+  },
+  "settings": {
+    "label": "Settings sections",
+    "sections": {
+      "general": "General",
+      "shortcut": "Shortcut",
+      "microphone": "Microphone",
+      "transcription": "Transcription",
+      "cleanup": "AI cleanup",
+      "sounds": "Sounds",
+      "advanced": "Advanced",
+      "about": "About",
+      "permissions": "Permissions"
+    }
+  },
+  "general": {
+    "launchAtLogin": "Launch at login",
+    "launchAtLoginHint": "Starts quietly in the tray.",
+    "idleBubble": "Show bubble when idle",
+    "idleBubbleHint": "A small bubble at the bottom of the screen. Click it to dictate hands-free.",
+    "language": "Language",
+    "languages": {
+      "system": "System"
+    }
+  },
+  "shortcut": {
+    "current": "Hold this to dictate",
+    "record": "Record new shortcut",
+    "cancelRecording": "Cancel",
+    "recordingHint": "Press the keys, then release them",
+    "conflict": "Heads up: this is also {{what}}",
+    "altGr": "On Spanish keyboards Right Alt is AltGr, which also types characters like @.",
+    "doubleTap": "Double-tap window",
+    "doubleTapHint": "Milliseconds between taps to start hands-free (150–800).",
+    "autoStop": "Auto-stop",
+    "autoStopHint": "Minutes before a hands-free dictation ends on its own (1–60)."
+  },
+  "mic": {
+    "title": "Microphone",
+    "device": "Input device",
+    "systemDefault": "System default",
+    "defaultSuffix": "default",
+    "listening": "Listening…",
+    "noSignal": "No signal: this mic is off, muted or asleep. Pick another one.",
+    "noise": "Only background noise. Speak to test it; if the bar barely moves, raise the input volume in system sound settings.",
+    "hearing": "Hearing you. This mic works.",
+    "unavailable": "This microphone can't be opened. Pick another one.",
+    "blocked": "Burbuja isn't allowed to use the microphone, so it only gets silence.",
+    "noDevice": "No microphone detected. Plug one in.",
+    "allowAccess": "Allow access"
+  },
+  "transcription": {
+    "engineHint": "Speech is transcribed on this computer. Nothing is sent anywhere.",
+    "gpu": "Use the graphics card",
+    "gpuHint": "Much faster. Turn off if transcription fails to start.",
+    "language": "Spoken language",
+    "autoDetect": "Detect automatically",
+    "unload": "Unload model after idle",
+    "unloadHint": "Minutes without dictating before freeing memory (0 = never).",
+    "tags": {
+      "best": "Best accuracy · Multilingual",
+      "cpu": "Fast on CPU · 25 languages",
+      "light": "Light · English only"
+    }
+  },
+  "models": {
+    "title": "Models",
+    "download": "Download",
+    "cancel": "Cancel",
+    "use": "Use",
+    "delete": "Delete",
+    "more": "More options for {{name}}",
+    "active": "Active",
+    "multilingual": "Multilingual",
+    "englishOnly": "English only",
+    "gpuFallback": "GPU unavailable, using the CPU",
+    "engine": {
+      "unloaded": "Not loaded",
+      "loading": "Loading…",
+      "ready": "Ready",
+      "modelMissing": "No model",
+      "failed": "Unavailable"
+    }
+  },
+  "cleanup": {
+    "provider": "Provider",
+    "providerHint": "Removes filler words and fixes punctuation with Ollama or LM Studio running on this computer.",
+    "model": "Model",
+    "modelHint": "Leave empty for the provider's default.",
+    "modelPlaceholder": "Default",
+    "detect": "Detect local models",
+    "style": "Style",
+    "styleHint": "The presets change capitalization and punctuation, never your words.",
+    "styles": {
+      "standard": "Standard",
+      "formal": "Formal",
+      "casual": "Casual",
+      "very_casual": "Very casual",
+      "excited": "Excited",
+      "custom": "Custom prompt"
+    },
+    "example": "Example:",
+    "examples": {
+      "standard": "Sounds good, I'll send the report by Friday.",
+      "formal": "Sounds good. I'll send the report by Friday.",
+      "casual": "Sounds good, I'll send the report by Friday",
+      "very_casual": "sounds good i'll send the report by friday",
+      "excited": "Sounds good! I'll send the report by Friday!"
+    },
+    "customPrompt": "Custom prompt",
+    "customPlaceholder": "Turn this into short bullet points: ${output}",
+    "customHint": "Write what the model should do. ${output} is replaced with what you said; without it, your words go at the end. Leave it empty to use the standard cleanup."
+  },
+  "providers": {
+    "cleanups": {
+      "off": "Off",
+      "ollama": "Ollama",
+      "lmstudio": "LM Studio"
+    },
+    "test": "Test cleanup",
+    "testing": "Testing…",
+    "testFailed": "Cleanup is off. Pick Ollama or LM Studio",
+    "testRaw": "No change: the local model failed or its output was rejected",
+    "notRunning": "not running",
+    "insertMethod": "Insert by",
+    "paste": "Paste",
+    "type": "Typing",
+    "restoreClipboard": "Restore clipboard after pasting"
+  },
+  "sounds": {
+    "title": "Sounds",
+    "enabled": "Sounds",
+    "volume": "Volume",
+    "start": "Start",
+    "stop": "Stop",
+    "cancel": "Cancel",
+    "preview": "Preview",
+    "previewHint": "Hear each cue at the current volume.",
+    "play": "Play the {{sound}} sound"
+  },
+  "advanced": {
+    "insertHint": "Typing works where pasting is blocked, but it's slower.",
+    "restoreHint": "Puts back what you had copied and keeps dictations out of Win+V history.",
+    "keepAudio": "Keep audio of dictations",
+    "keepAudioHint": "Off by default. Audio stays on this computer.",
+    "logs": "Open logs folder",
+    "reset": "Reset settings",
+    "confirmReset": "Reset every setting to its default? Your history stays.",
+    "timings": "Last dictation timings",
+    "timingsEmpty": "Dictate something to see where the time goes.",
+    "timing": {
+      "hotkeyToRecord": "Shortcut → recording",
+      "releaseToStop": "Release → stop",
+      "audio": "Audio length",
+      "vad": "Speech detection",
+      "transcribe": "Transcription",
+      "cleanup": "AI cleanup",
+      "insert": "Insertion",
+      "total": "Release → text inserted"
+    }
+  },
+  "about": {
+    "version": "Version {{version}}",
+    "privacy": "No telemetry. Everything stays on this computer: transcription and AI cleanup run locally.",
+    "licenses": "Licenses",
+    "hideLicenses": "Hide licenses"
+  },
+  "permissions": {
+    "title": "Allow Burbuja on this Mac",
+    "body": "Burbuja needs these to hear you, catch the shortcut and paste the text in any app. Audio stays on this computer.",
+    "bodyWindows": "Windows decides which apps can use the microphone. If access is off, Burbuja records silence and dictation doesn't work.",
+    "allow": "Allow",
+    "granted": "Allowed",
+    "pending": "Pending",
+    "allSet": "All set: Burbuja has the permissions it needs.",
+    "openMac": "Open System Settings",
+    "openWindows": "Open Windows settings",
+    "restartHint": "You allowed it, but macOS only applies it after Burbuja restarts.",
+    "restart": "Restart Burbuja",
+    "rerun": "Initial setup",
+    "rerunHint": "Go through the permissions, microphone and model steps again.",
+    "rerunAction": "Run again",
+    "microphone": {
+      "title": "Microphone",
+      "body": "To hear what you dictate.",
+      "deniedMac": "You declined it before. In Privacy & Security > Microphone, turn on Burbuja.",
+      "block": {
+        "device": "Microphone access is off for this whole device. Turn it on in Privacy > Microphone (may need an administrator).",
+        "apps": "Turn on “Let apps access your microphone”.",
+        "desktopApps": "Turn on “Let desktop apps access your microphone”, at the bottom of the page."
+      }
+    },
+    "accessibility": {
+      "title": "Accessibility",
+      "body": "To catch the shortcut and paste the text where you're typing."
+    },
+    "inputMonitoring": {
+      "title": "Input Monitoring",
+      "body": "This Mac also wants it to catch the shortcut."
+    },
+    "noMicrophone": {
+      "title": "No microphone detected",
+      "body": "Plug one in (or check it isn't disabled in your sound settings)."
+    },
+    "banner": {
+      "title_one": "{{count}} permission missing",
+      "title_other": "{{count}} permissions missing",
+      "body": "Dictation won't work until you fix it.",
+      "action": "Fix it"
+    },
+    "stillOff": "Burbuja already switched on but still pending? Press “Fix permission”: it clears the old approval and asks again.",
+    "repair": "Fix permission"
+  },
+  "onboarding": {
+    "progress": "Step {{step}} of {{total}}",
+    "welcome": "Just talk. Burbuja types, in any app.",
+    "start": "Get started",
+    "accessTitle": "Microphone access",
+    "continue": "Continue",
+    "micTitle": "Pick your microphone",
+    "micBody": "Say something. The bar should move.",
+    "skip": "Skip for now",
+    "modelTitle": "Download the speech model",
+    "ready": "Ready",
+    "tryBefore": "Hold",
+    "tryAfter": "and say hello",
+    "itWorks": "It works. You're all set.",
+    "trayTip": "Tip: drag the Burbuja icon from ^ in the taskbar to keep it in view.",
+    "finish": "Finish",
+    "later": "Finish later",
+    "continueAnyway": "Continue without it",
+    "pendingLater": "It will show as pending in Settings > Permissions."
+  },
+  "pill": {
+    "hold": "Hold {{hotkey}}",
+    "cancelled": "Cancelled",
+    "errors": {
+      "mic_silent": "No sound from the mic. Pick another one",
+      "mic_unavailable": "Microphone unavailable",
+      "model_missing": "Download a model in Settings",
+      "engine_crashed": "Transcription failed. Try again",
+      "provider_error": "The local AI model failed",
+      "elevated_target": "Admin window: press Ctrl+V",
+      "input_blocked": "Couldn't paste: press ⌘V",
+      "too_short": "Too short",
+      "no_speech": "No speech heard",
+      "offline": "Can't reach Ollama/LM Studio",
+      "service_timeout": "The local AI model took too long",
+      "cleanup_skipped": "Inserted without AI cleanup",
+      "mic_permission": "Turn on microphone access",
+      "no_microphone": "No microphone connected",
+      "accessibility_missing": "Copied. Allow Accessibility to paste"
+    },
+    "aria": {
+      "idle": "Burbuja. Click to dictate hands-free",
+      "recording": "Recording. Click to finish",
+      "processing": "Transcribing"
+    },
+    "live": {
+      "listening": "Listening",
+      "handsFree": "Hands-free",
+      "processing": "Transcribing",
+      "inserted": "Inserted"
+    }
+  }
+}

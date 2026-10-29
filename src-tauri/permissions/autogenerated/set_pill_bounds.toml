@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-set-pill-bounds"
+description = "Enables the set_pill_bounds command without any pre-configured scope."
+commands.allow = ["set_pill_bounds"]
+
+[[permission]]
+identifier = "deny-set-pill-bounds"
+description = "Denies the set_pill_bounds command without any pre-configured scope."
+commands.deny = ["set_pill_bounds"]

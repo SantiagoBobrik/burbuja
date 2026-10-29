@@ -1,0 +1,57 @@
+[package]
+name = "burbuja"
+version = "0.1.0"
+description = "System-wide voice dictation"
+authors = ["Burbuja"]
+license = "MIT"
+edition = "2024"
+publish = false
+default-run = "burbuja"
+
+[[bin]]
+name = "export-bindings"
+path = "src/bin/export_bindings.rs"
+
+[lib]
+# The `_lib` suffix keeps the lib name distinct from the bin name on Windows
+# (https://github.com/rust-lang/cargo/issues/8519).
+name = "burbuja_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+cmake = "0.1.58"
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["image-png", "tray-icon"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+log = "0.4"
+tauri-plugin-store = "2.5"
+tauri-plugin-log = "2.10"
+tokio = { version = "1", features = ["rt-multi-thread", "sync", "time", "macros", "fs", "io-util", "net"] }
+rodio = { version = "0.23", default-features = false, features = ["playback"] }
+tauri-specta = { version = "=2.0.0-rc.26", features = ["derive", "typescript"] }
+specta = { version = "=2.0.0-rc.26", features = ["derive"] }
+specta-typescript = "=0.0.13"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "http2", "charset", "json"] }
+sha2 = "0.10"
+tokio-util = "0.7"
+rusqlite_migration = "2"
+rusqlite = { version = "0.40", features = ["bundled"] }
+tauri-plugin-single-instance = "2"
+tauri-plugin-autostart = "2"
+tauri-plugin-opener = "2"
+cpal = "0.18.2"
+
+# https://tauri.app/concept/size/#cargo-configuration
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true
+
+[target."cfg(windows)".dependencies]
+windows = { version = "0.62", features = ["Win32_Foundation", "Win32_Globalization", "Win32_Security", "Win32_System_DataExchange", "Win32_System_LibraryLoader", "Win32_System_Memory", "Win32_System_Ole", "Win32_System_Registry", "Win32_System_Threading", "Win32_UI_Input_KeyboardAndMouse", "Win32_UI_WindowsAndMessaging"] }

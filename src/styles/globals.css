@@ -1,0 +1,142 @@
+@import "tailwindcss";
+@import "./tokens.css";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Map tokens to Tailwind v4 utilities. Colors come only from tokens.css. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-pill: var(--pill);
+  --color-text-1: var(--text-1);
+  --color-text-2: var(--text-2);
+  --color-text-3: var(--text-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-pill-ring: var(--ring);
+  --color-accent: var(--accent);
+  --color-accent-press: var(--accent-press);
+  --color-iris: var(--iris);
+  --color-on-accent: var(--on-accent);
+  --color-rec: var(--rec);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-danger: var(--danger);
+  --color-coral: var(--coral);
+  --color-lavender: var(--lavender);
+  --color-teal: var(--teal);
+  --color-pink: var(--pink);
+  --shadow-brut-sm: var(--shadow-sm);
+  --shadow-brut-md: var(--shadow-md);
+  --shadow-brut-lg: var(--shadow-lg);
+  --shadow-brut-sm-hover: var(--shadow-sm-hover);
+  --shadow-brut-md-hover: var(--shadow-md-hover);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-pill: var(--radius-pill);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-sans);
+  --ease-out: var(--ease-out);
+
+  /*
+   * shadcn/ui semantic colors, mapped onto Burbuja tokens (dark only).
+   * Name clashes: shadcn's `accent` means "subtle hover background" and its
+   * `ring` means "focus ring". Ours: `accent` is the yellow accent and the
+   * focus ring is also accent. So `bg-accent` stays yellow; shadcn
+   * components must use `bg-muted` for hover (fix on every `shadcn add`).
+   */
+  --color-background: var(--bg);
+  --color-foreground: var(--text-1);
+  --color-card: var(--surface-1);
+  --color-card-foreground: var(--text-1);
+  --color-popover: var(--surface-3);
+  --color-popover-foreground: var(--text-1);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--on-accent);
+  --color-secondary: var(--surface-2);
+  --color-secondary-foreground: var(--text-1);
+  --color-muted: var(--surface-2);
+  --color-muted-foreground: var(--text-3);
+  --color-accent-foreground: var(--text-1);
+  --color-destructive: var(--danger);
+  --color-border: var(--line);
+  --color-input: var(--line-strong);
+  --color-ring: var(--accent);
+  --radius-xl: var(--radius-lg);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+
+/* Thin, dark scrollbars that only show what they must (WebView2 is Chromium). The gutter is
+   reserved so content doesn't shift when a page becomes scrollable. */
+.scroll-area {
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface-3) transparent;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
+}
+
+.scroll-area:hover {
+  scrollbar-color: var(--text-3) transparent;
+}
+
+/* Neobrutalism "press": hover sinks halfway into the shadow, active sinks fully. Only
+   transform + box-shadow animate (nothing over 300 ms). */
+.brut-press {
+  transition:
+    transform var(--dur-fast) ease,
+    box-shadow var(--dur-fast) ease;
+}
+.brut-press:hover:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-md-hover);
+}
+.brut-press:active:not(:disabled) {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .brut-press:hover:not(:disabled),
+  .brut-press:active:not(:disabled) {
+    transform: none;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 100ms !important;
+    transition-duration: 100ms !important;
+  }
+}

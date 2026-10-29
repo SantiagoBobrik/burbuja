@@ -1,0 +1,72 @@
+/* Burbuja design tokens. Dark only (no light variant).
+   Visual direction: neobrutalism "Dark Brut":
+   near-black surfaces, white 2 px borders, hard zero-blur offset shadows, yellow + coral. */
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("./fonts/DMSans-Variable.woff2") format("woff2");
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("./fonts/GeistMono-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  color-scheme: dark;
+  /* surfaces (elevation goes up = lighter) */
+  --bg: #111111; /* app background */
+  --surface-1: #181818; /* sidebar, cards */
+  --surface-2: #222222; /* inputs, hover rows */
+  --surface-3: #2c2c2c; /* popovers, menus */
+  --pill: #111111; /* the bubble */
+  /* text */
+  --text-1: #ffffff; /* primary */
+  --text-2: #c9c9c9; /* secondary (AA on every surface) */
+  --text-3: #9a9a9a; /* muted, captions (AA on --bg/--surface-1) */
+  /* lines: brutal borders are solid white; subtle dividers stay soft */
+  --line: rgba(255, 255, 255, 0.14);
+  --line-strong: #ffffff;
+  --ring: #ffffff; /* pill outline */
+  --border-w: 2px;
+  /* hard offset shadows, zero blur (the style's signature) */
+  --shadow-color: #ffffff;
+  --shadow-sm: 3px 3px 0 0 var(--shadow-color);
+  --shadow-md: 4px 4px 0 0 var(--shadow-color);
+  --shadow-lg: 6px 6px 0 0 var(--shadow-color);
+  --shadow-sm-hover: 1px 1px 0 0 var(--shadow-color);
+  --shadow-md-hover: 2px 2px 0 0 var(--shadow-color);
+  /* accents */
+  --accent: #ffe566; /* yellow: primary buttons, active nav, focus */
+  --accent-press: #ffd92e;
+  --on-accent: #111111;
+  --coral: #e8635a;
+  --lavender: #c4b5fd;
+  --teal: #4ecdc4;
+  --pink: #f9a8b8;
+  --iris: #7fe7e1; /* brand only: icon, onboarding, About */
+  /* states */
+  --rec: #e8635a; /* recording dot */
+  --ok: #4ecdc4;
+  --warn: #ffe566;
+  --danger: #f87171;
+  /* shape: rounded, never 0 */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+  /* type */
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, "Segoe UI Variable", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  /* motion: mechanical press, nothing over 300 ms */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 100ms;
+  --dur-base: 150ms;
+  --dur-slow: 260ms;
+}

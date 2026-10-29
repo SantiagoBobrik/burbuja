@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-start-hands-free"
+description = "Enables the start_hands_free command without any pre-configured scope."
+commands.allow = ["start_hands_free"]
+
+[[permission]]
+identifier = "deny-start-hands-free"
+description = "Denies the start_hands_free command without any pre-configured scope."
+commands.deny = ["start_hands_free"]

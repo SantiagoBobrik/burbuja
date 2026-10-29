@@ -1,0 +1,49 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Speech engine DLLs staged by build.rs
+src-tauri/engine-libs/
+
+# Local-only files: secrets, per-machine agent config, build leftovers
+.env
+.env.*
+.claude/settings.local.json
+.claude/launch.json
+*.stale
+
+# Build outputs and packaging tools (pnpm tauri build), wherever they land
+src-tauri/WixTools/
+*.msi
+*.msix
+*.dmg
+*-setup.exe
+*.nsis.zip
+*.sig
+
+# Local development workspace: agent config and internal notes (kept on disk, never committed)
+CLAUDE.md
+.claude/
+.internal/
+skills-lock.json

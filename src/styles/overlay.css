@@ -1,0 +1,59 @@
+/* The bubble window is a transparent canvas; only the pill is painted. */
+html:has(body.overlay),
+body.overlay {
+  background: transparent;
+  overflow: hidden;
+}
+
+/* Idle bubble: a 2 px float every 4 s. */
+@keyframes bubble-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Recording dot: soft pulse 1 → 1.15 over 1.2 s. */
+@keyframes rec-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+/* Processing: three dots breathing 0.3 → 1, 900 ms, staggered 150 ms. */
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.bubble-float {
+  animation: bubble-float 4s ease-in-out infinite;
+}
+
+.rec-pulse {
+  animation: rec-pulse 1.2s ease-in-out infinite;
+}
+
+.breathe {
+  animation: breathe 900ms ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble-float,
+  .rec-pulse,
+  .breathe {
+    animation: none;
+  }
+}

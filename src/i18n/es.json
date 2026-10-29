@@ -1,0 +1,334 @@
+{
+  "app": {
+    "tagline": "Habla. Burbuja escribe."
+  },
+  "common": {
+    "cancel": "Cancelar"
+  },
+  "titlebar": {
+    "minimize": "Minimizar",
+    "maximize": "Maximizar",
+    "close": "Cerrar a la bandeja"
+  },
+  "nav": {
+    "label": "Principal",
+    "home": "Inicio",
+    "history": "Historial",
+    "dictionary": "Diccionario",
+    "settings": "Ajustes"
+  },
+  "home": {
+    "hero": {
+      "before": "Mantén",
+      "after": "para dictar en cualquier app"
+    },
+    "try": "Probar aquí",
+    "hideTry": "Ocultar el campo de prueba",
+    "tryLabel": "Campo de prueba",
+    "tryPlaceholder": "Haz clic aquí, mantén {{hotkey}} y habla…",
+    "statsLabel": "Esta semana",
+    "words": "Palabras dictadas",
+    "wpm": "Palabras por minuto",
+    "saved": "Tiempo ahorrado",
+    "minutes": "{{n}} min",
+    "recent": "Recientes",
+    "empty": "Todavía nada. Mantén {{hotkey}} en cualquier app y habla."
+  },
+  "history": {
+    "keep": "Conservar",
+    "days": "{{n}} días",
+    "forever": "Siempre",
+    "clear": "Borrar historial",
+    "confirmClear": "¿Borrar todos los dictados? No se puede deshacer.",
+    "clearAll": "Borrar todo",
+    "search": "Buscar en el historial",
+    "searchPlaceholder": "Buscar…",
+    "empty": "Aquí aparecerán tus dictados",
+    "noMatches": "Sin resultados",
+    "copy": "Copiar",
+    "showRaw": "Ver la transcripción original",
+    "showFinal": "Ver el texto final",
+    "reclean": "Limpiar de nuevo",
+    "delete": "Borrar",
+    "more": "Cargar más"
+  },
+  "dictionary": {
+    "vocabulary": "Vocabulario",
+    "vocabularyHint": "Nombres y términos que deben escribirse tal cual.",
+    "addTerm": "Agregar un término",
+    "addTermPlaceholder": "p. ej. Kubernetes…",
+    "remove": "Quitar {{term}}",
+    "replacements": "Reemplazos",
+    "replacementsHint": "Se aplican después de la limpieza, por palabra completa, sin importar mayúsculas.",
+    "from": "Reemplazar",
+    "fromPlaceholder": "post gres…",
+    "to": "Por",
+    "toPlaceholder": "PostgreSQL…",
+    "add": "Agregar",
+    "removeReplacement": "Quitar el reemplazo de {{from}}"
+  },
+  "settings": {
+    "label": "Secciones de ajustes",
+    "sections": {
+      "general": "General",
+      "shortcut": "Atajo",
+      "microphone": "Micrófono",
+      "transcription": "Transcripción",
+      "cleanup": "Limpieza con IA",
+      "sounds": "Sonidos",
+      "advanced": "Avanzado",
+      "about": "Acerca de",
+      "permissions": "Permisos"
+    }
+  },
+  "general": {
+    "launchAtLogin": "Abrir al iniciar sesión",
+    "launchAtLoginHint": "Arranca en silencio en la bandeja.",
+    "idleBubble": "Mostrar la burbuja en reposo",
+    "idleBubbleHint": "Una burbuja pequeña abajo de la pantalla. Haz clic para dictar manos libres.",
+    "language": "Idioma",
+    "languages": {
+      "system": "Sistema"
+    }
+  },
+  "shortcut": {
+    "current": "Mantén esto para dictar",
+    "record": "Grabar nuevo atajo",
+    "cancelRecording": "Cancelar",
+    "recordingHint": "Pulsa las teclas y luego suéltalas",
+    "conflict": "Atención: esto también es {{what}}",
+    "altGr": "En teclados en español, Alt derecho es AltGr, que también escribe caracteres como @.",
+    "doubleTap": "Ventana del doble toque",
+    "doubleTapHint": "Milisegundos entre toques para iniciar manos libres (150–800).",
+    "autoStop": "Corte automático",
+    "autoStopHint": "Minutos antes de que un dictado manos libres termine solo (1–60)."
+  },
+  "mic": {
+    "title": "Micrófono",
+    "device": "Dispositivo de entrada",
+    "systemDefault": "Predeterminado del sistema",
+    "defaultSuffix": "predeterminado",
+    "listening": "Escuchando…",
+    "noSignal": "Sin señal: este micrófono está apagado, silenciado o dormido. Elige otro.",
+    "noise": "Solo ruido de fondo. Habla para probarlo; si la barra apenas se mueve, sube el volumen de entrada en la configuración de sonido del sistema.",
+    "hearing": "Te escucho. Este micrófono funciona.",
+    "unavailable": "No se puede abrir este micrófono. Elige otro.",
+    "blocked": "Burbuja no tiene permiso para usar el micrófono, así que solo recibe silencio.",
+    "noDevice": "No se detecta ningún micrófono. Conecta uno.",
+    "allowAccess": "Permitir acceso"
+  },
+  "transcription": {
+    "engineHint": "La voz se transcribe en esta computadora. No se envía nada a ningún lado.",
+    "gpu": "Usar la placa de video",
+    "gpuHint": "Mucho más rápido. Desactívalo si la transcripción no arranca.",
+    "language": "Idioma hablado",
+    "autoDetect": "Detectar automáticamente",
+    "unload": "Descargar el modelo en reposo",
+    "unloadHint": "Minutos sin dictar antes de liberar memoria (0 = nunca).",
+    "tags": {
+      "best": "La mejor precisión · Multilingüe",
+      "cpu": "Rápido en procesador · 25 idiomas",
+      "light": "Liviano · Solo inglés"
+    }
+  },
+  "models": {
+    "title": "Modelos",
+    "download": "Descargar",
+    "cancel": "Cancelar",
+    "use": "Usar",
+    "delete": "Borrar",
+    "more": "Más opciones de {{name}}",
+    "active": "Activo",
+    "multilingual": "Multilingüe",
+    "englishOnly": "Solo inglés",
+    "gpuFallback": "GPU no disponible, usando el procesador",
+    "engine": {
+      "unloaded": "Sin cargar",
+      "loading": "Cargando…",
+      "ready": "Listo",
+      "modelMissing": "Sin modelo",
+      "failed": "No disponible"
+    }
+  },
+  "cleanup": {
+    "provider": "Proveedor",
+    "providerHint": "Quita muletillas y corrige la puntuación con Ollama o LM Studio en esta computadora.",
+    "model": "Modelo",
+    "modelHint": "Déjalo vacío para usar el predeterminado del proveedor.",
+    "modelPlaceholder": "Predeterminado",
+    "detect": "Detectar modelos locales",
+    "style": "Estilo",
+    "styleHint": "Los estilos predefinidos cambian mayúsculas y puntuación, nunca tus palabras.",
+    "styles": {
+      "standard": "Estándar",
+      "formal": "Formal",
+      "casual": "Casual",
+      "very_casual": "Muy casual",
+      "excited": "Entusiasta",
+      "custom": "Prompt propio"
+    },
+    "example": "Ejemplo:",
+    "examples": {
+      "standard": "Dale, te mando el informe el viernes.",
+      "formal": "Dale. Te mando el informe el viernes.",
+      "casual": "Dale, te mando el informe el viernes",
+      "very_casual": "dale te mando el informe el viernes",
+      "excited": "¡Dale! ¡Te mando el informe el viernes!"
+    },
+    "customPrompt": "Prompt propio",
+    "customPlaceholder": "Convierte esto en viñetas cortas: ${output}",
+    "customHint": "Escribe qué debe hacer el modelo. ${output} se reemplaza por lo que dijiste; si no lo pones, tus palabras van al final. Déjalo vacío para usar la limpieza estándar."
+  },
+  "providers": {
+    "cleanups": {
+      "off": "Desactivada",
+      "ollama": "Ollama",
+      "lmstudio": "LM Studio"
+    },
+    "test": "Probar limpieza",
+    "testing": "Probando…",
+    "testFailed": "La limpieza está desactivada. Elige Ollama o LM Studio",
+    "testRaw": "Sin cambios: el modelo local falló o su respuesta fue descartada",
+    "notRunning": "no está abierto",
+    "insertMethod": "Insertar con",
+    "paste": "Pegar",
+    "type": "Tipeo",
+    "restoreClipboard": "Restaurar el portapapeles después de pegar"
+  },
+  "sounds": {
+    "title": "Sonidos",
+    "enabled": "Sonidos",
+    "volume": "Volumen",
+    "start": "Inicio",
+    "stop": "Fin",
+    "cancel": "Cancelar",
+    "preview": "Escuchar",
+    "previewHint": "Escucha cada aviso con el volumen actual.",
+    "play": "Reproducir el sonido de {{sound}}"
+  },
+  "advanced": {
+    "insertHint": "El tipeo funciona donde pegar está bloqueado, pero es más lento.",
+    "restoreHint": "Devuelve lo que tenías copiado y deja los dictados fuera del historial de Win+V.",
+    "keepAudio": "Guardar el audio de los dictados",
+    "keepAudioHint": "Desactivado por defecto. El audio queda en esta computadora.",
+    "logs": "Abrir la carpeta de registros",
+    "reset": "Restablecer ajustes",
+    "confirmReset": "¿Volver todos los ajustes a sus valores predeterminados? El historial se mantiene.",
+    "timings": "Tiempos del último dictado",
+    "timingsEmpty": "Dicta algo para ver en qué se va el tiempo.",
+    "timing": {
+      "hotkeyToRecord": "Atajo → grabación",
+      "releaseToStop": "Soltar → detener",
+      "audio": "Duración del audio",
+      "vad": "Detección de voz",
+      "transcribe": "Transcripción",
+      "cleanup": "Limpieza con IA",
+      "insert": "Inserción",
+      "total": "Soltar → texto insertado"
+    }
+  },
+  "about": {
+    "version": "Versión {{version}}",
+    "privacy": "Sin telemetría. Todo queda en esta computadora: la transcripción y la limpieza con IA son locales.",
+    "licenses": "Licencias",
+    "hideLicenses": "Ocultar licencias"
+  },
+  "permissions": {
+    "title": "Permite Burbuja en este Mac",
+    "body": "Burbuja los necesita para escucharte, detectar el atajo y pegar el texto en cualquier app. El audio se queda en esta computadora.",
+    "bodyWindows": "Windows decide qué apps pueden usar el micrófono. Si el acceso está apagado, Burbuja graba silencio y el dictado no funciona.",
+    "allow": "Permitir",
+    "granted": "Permitido",
+    "pending": "Pendiente",
+    "allSet": "Todo listo: Burbuja tiene los permisos que necesita.",
+    "openMac": "Abrir Ajustes del Sistema",
+    "openWindows": "Abrir configuración de Windows",
+    "restartHint": "Ya lo permitiste, pero macOS solo lo aplica al reiniciar Burbuja.",
+    "restart": "Reiniciar Burbuja",
+    "rerun": "Configuración inicial",
+    "rerunHint": "Vuelve a recorrer los pasos de permisos, micrófono y modelo.",
+    "rerunAction": "Repetir",
+    "microphone": {
+      "title": "Micrófono",
+      "body": "Para escuchar lo que dictas.",
+      "deniedMac": "Lo rechazaste antes. En Privacidad y seguridad > Micrófono, activa Burbuja.",
+      "block": {
+        "device": "El acceso al micrófono está apagado para todo el equipo. Actívalo en Privacidad > Micrófono (puede requerir un administrador).",
+        "apps": "Activa «Permitir que las aplicaciones accedan al micrófono».",
+        "desktopApps": "Activa «Permitir que las aplicaciones de escritorio accedan al micrófono», al final de la página."
+      }
+    },
+    "accessibility": {
+      "title": "Accesibilidad",
+      "body": "Para detectar el atajo y pegar el texto donde estás escribiendo."
+    },
+    "inputMonitoring": {
+      "title": "Monitoreo de entrada",
+      "body": "Este Mac también lo pide para detectar el atajo."
+    },
+    "noMicrophone": {
+      "title": "No se detecta ningún micrófono",
+      "body": "Conecta uno (o revisa que no esté desactivado en la configuración de sonido)."
+    },
+    "banner": {
+      "title_one": "Falta {{count}} permiso",
+      "title_other": "Faltan {{count}} permisos",
+      "body": "Hasta que lo resuelvas, el dictado no va a funcionar.",
+      "action": "Resolver"
+    },
+    "stillOff": "¿Burbuja ya aparece activada y sigue pendiente? Pulsa «Reparar permiso»: borra la aprobación vieja y vuelve a pedirla.",
+    "repair": "Reparar permiso"
+  },
+  "onboarding": {
+    "progress": "Paso {{step}} de {{total}}",
+    "welcome": "Habla. Burbuja escribe, en cualquier app.",
+    "start": "Empezar",
+    "accessTitle": "Acceso al micrófono",
+    "continue": "Continuar",
+    "micTitle": "Elige tu micrófono",
+    "micBody": "Di algo. La barra debería moverse.",
+    "skip": "Omitir por ahora",
+    "modelTitle": "Descarga el modelo de voz",
+    "ready": "Listo",
+    "tryBefore": "Mantén",
+    "tryAfter": "y di hola",
+    "itWorks": "Funciona. Ya está todo listo.",
+    "trayTip": "Consejo: arrastra el ícono de Burbuja desde ^ en la barra de tareas para tenerlo a la vista.",
+    "finish": "Terminar",
+    "later": "Terminar después",
+    "continueAnyway": "Continuar sin permitir",
+    "pendingLater": "Quedará como pendiente en Ajustes > Permisos."
+  },
+  "pill": {
+    "hold": "Mantén {{hotkey}}",
+    "cancelled": "Cancelado",
+    "errors": {
+      "mic_silent": "El micrófono no suena. Elige otro",
+      "mic_unavailable": "Micrófono no disponible",
+      "model_missing": "Descarga un modelo en Ajustes",
+      "engine_crashed": "Falló la transcripción. Reintenta",
+      "provider_error": "Falló el modelo de IA local",
+      "elevated_target": "Ventana de admin: pulsa Ctrl+V",
+      "input_blocked": "No se pudo pegar: pulsa ⌘V",
+      "too_short": "Muy corto",
+      "no_speech": "No se escuchó voz",
+      "offline": "No se pudo conectar con Ollama/LM Studio",
+      "service_timeout": "El modelo de IA local tardó demasiado",
+      "cleanup_skipped": "Insertado sin limpieza con IA",
+      "mic_permission": "Activa el acceso al micrófono",
+      "no_microphone": "No hay micrófono conectado",
+      "accessibility_missing": "Copiado. Activa Accesibilidad para pegar"
+    },
+    "aria": {
+      "idle": "Burbuja. Haz clic para dictar manos libres",
+      "recording": "Grabando. Haz clic para terminar",
+      "processing": "Transcribiendo"
+    },
+    "live": {
+      "listening": "Escuchando",
+      "handsFree": "Manos libres",
+      "processing": "Transcribiendo",
+      "inserted": "Insertado"
+    }
+  }
+}

@@ -1,0 +1,171 @@
+# Builds the installers, attaches them to a draft GitHub release and publishes their SHA-256.
+# Windows x64: NSIS setup (.exe). macOS Apple Silicon: .dmg (ad-hoc signed).
+# Runs on a version tag (v1.2.3, must match tauri.conf.json) or by hand from the Actions tab.
+#
+# Tauri's documented layout: one job creates the draft, the platform builds upload to it by id
+# (so they can't race into two drafts), and a last job checksums exactly what was uploaded.
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  VULKAN_SDK_VERSION: 1.4.363.0
+  # Published by LunarG for vulkansdk-windows-X64-<version>.exe.
+  VULKAN_SDK_SHA256: 94a82d378f7a5e3e54c9db7d2fb7016af136e14ac0a18dbf0f2f67a36352d141
+
+jobs:
+  release:
+    name: Create the draft release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # create or update the draft
+    outputs:
+      id: ${{ steps.draft.outputs.id }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Create or reuse the draft
+        id: draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(node -p "require('./src-tauri/tauri.conf.json').version")
+          tag="v${version}"
+          if [ "${GITHUB_REF_TYPE}" = "tag" ] && [ "${GITHUB_REF_NAME}" != "${tag}" ]; then
+            echo "::error::Tag ${GITHUB_REF_NAME} does not match tauri.conf.json version ${version}"
+            exit 1
+          fi
+          releases="repos/${GITHUB_REPOSITORY}/releases?per_page=100"
+          published=$(gh api "$releases" --jq "[.[] | select(.tag_name == \"${tag}\" and (.draft | not))] | length")
+          if [ "$published" != "0" ]; then
+            echo "::error::${tag} is already published. Bump the version in tauri.conf.json first."
+            exit 1
+          fi
+          sed -e "s|{{VERSION}}|${version}|g" -e "s|{{REPO}}|${GITHUB_REPOSITORY}|g" \
+            .github/release-notes.md > "$RUNNER_TEMP/notes.md"
+          # A re-run reuses its draft: the builds replace assets that have the same name.
+          id=$(gh api "$releases" --jq "[.[] | select(.tag_name == \"${tag}\" and .draft)][0].id // empty")
+          if [ -n "$id" ]; then
+            gh api -X PATCH "repos/${GITHUB_REPOSITORY}/releases/${id}" \
+              -f target_commitish="${GITHUB_SHA}" -F body=@"$RUNNER_TEMP/notes.md" > /dev/null
+          else
+            id=$(gh api -X POST "repos/${GITHUB_REPOSITORY}/releases" \
+              -f tag_name="${tag}" -f target_commitish="${GITHUB_SHA}" -f name="Burbuja ${tag}" \
+              -F draft=true -F body=@"$RUNNER_TEMP/notes.md" --jq .id)
+          fi
+          echo "id=${id}" >> "$GITHUB_OUTPUT"
+
+  build:
+    name: ${{ matrix.name }}
+    needs: release
+    permissions:
+      contents: write # upload the installers to the draft
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Windows x64
+            runner: windows-latest
+            args: --bundles nsis
+          - name: macOS Apple Silicon
+            runner: macos-latest
+            args: --target aarch64-apple-darwin --bundles dmg
+    runs-on: ${{ matrix.runner }}
+    # A cold build compiles whisper.cpp's Vulkan shaders on a 4-core runner; fail early instead of
+    # burning the default 6 h if something hangs.
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          submodules: recursive
+          persist-credentials: false
+
+      - name: Install the Vulkan SDK
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ProgressPreference = 'SilentlyContinue'
+          $file = "vulkansdk-windows-X64-$env:VULKAN_SDK_VERSION.exe"
+          Invoke-WebRequest "https://sdk.lunarg.com/sdk/download/$env:VULKAN_SDK_VERSION/windows/$file" -OutFile $file
+          if ((Get-FileHash $file -Algorithm SHA256).Hash -ne $env:VULKAN_SDK_SHA256) {
+            throw "Vulkan SDK checksum mismatch"
+          }
+          $root = "C:\VulkanSDK\$env:VULKAN_SDK_VERSION"
+          $p = Start-Process -FilePath ".\$file" -Wait -PassThru -ArgumentList `
+            '--root', $root, '--accept-licenses', '--default-answer', '--confirm-command', 'install'
+          if ($p.ExitCode -ne 0) { throw "Vulkan SDK install failed ($($p.ExitCode))" }
+          Remove-Item $file
+          "VULKAN_SDK=$root" >> $env:GITHUB_ENV
+          "$root\Bin" >> $env:GITHUB_PATH
+
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          version: 12
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: lts/*
+          cache: pnpm
+
+      - name: Install Rust
+        shell: bash
+        run: |
+          rustup toolchain install stable --profile minimal --no-self-update
+          rustup default stable
+          if [ "$RUNNER_OS" = "macOS" ]; then rustup target add aarch64-apple-darwin; fi
+
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with:
+          workspaces: src-tauri -> target
+
+      - name: Install frontend dependencies
+        run: pnpm install --frozen-lockfile
+
+      - uses: tauri-apps/tauri-action@1deb371b0cd8bd54025b384f1cd735e725c4060f # v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          releaseId: ${{ needs.release.outputs.id }}
+          args: ${{ matrix.args }}
+
+  checksums:
+    name: Publish SHA-256 checksums
+    needs: [release, build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # upload SHA256SUMS.txt to the draft
+    steps:
+      - name: Checksum the uploaded installers
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_ID: ${{ needs.release.outputs.id }}
+        run: |
+          assets="repos/${GITHUB_REPOSITORY}/releases/${RELEASE_ID}/assets"
+          mkdir "$RUNNER_TEMP/assets" && cd "$RUNNER_TEMP/assets"
+          # Hash what users will download, not the files left on the build machines.
+          gh api "$assets" --jq '.[] | select(.name != "SHA256SUMS.txt") | "\(.id) \(.name)"' |
+            while read -r asset name; do
+              gh api -H "Accept: application/octet-stream" \
+                "repos/${GITHUB_REPOSITORY}/releases/assets/${asset}" > "$name"
+            done
+          ls ./*.exe ./*.dmg > /dev/null # both platforms must be there
+          sha256sum -- * > "$RUNNER_TEMP/SHA256SUMS.txt"
+          old=$(gh api "$assets" --jq '.[] | select(.name == "SHA256SUMS.txt") | .id')
+          if [ -n "$old" ]; then
+            gh api -X DELETE "repos/${GITHUB_REPOSITORY}/releases/assets/${old}"
+          fi
+          gh api -X POST -H "Content-Type: text/plain" --input "$RUNNER_TEMP/SHA256SUMS.txt" \
+            "https://uploads.github.com/repos/${GITHUB_REPOSITORY}/releases/${RELEASE_ID}/assets?name=SHA256SUMS.txt" > /dev/null
+          { echo '```'; cat "$RUNNER_TEMP/SHA256SUMS.txt"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,17 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "overlay",
+  "description": "The bubble: listens to events, starts/finishes hands-free, cancels, opens the Hub, and manages its own presence and click-through box",
+  "windows": ["overlay"],
+  "permissions": [
+    "core:event:allow-listen",
+    "core:event:allow-unlisten",
+    "allow-start-hands-free",
+    "allow-cancel-dictation",
+    "allow-open-hub",
+    "allow-overlay-presence",
+    "allow-set-pill-bounds",
+    "allow-overlay-menu",
+    "allow-get-settings"
+  ]
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Burbuja app icon: a bubble on a dark squircle. -->
+  <rect x="32" y="32" width="960" height="960" rx="224" fill="#111111"/>
+  <!-- hard offset shadow, zero blur -->
+  <circle cx="540" cy="540" r="317" fill="#FFFFFF"/>
+  <!-- the bubble: 62% of the side -->
+  <circle cx="500" cy="500" r="317" fill="#FFE566" stroke="#111111" stroke-width="28"/>
+  <!-- specular highlight: white oval, rotated -35°, top left -->
+  <ellipse cx="380" cy="360" rx="92" ry="48" fill="#FFFFFF" fill-opacity="0.9" transform="rotate(-35 380 360)"/>
+</svg>
